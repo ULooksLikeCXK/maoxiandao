@@ -11,7 +11,7 @@ export default function DevilFruit({ phase, onOpen }) {
   if (isRevealed) return null
 
   return (
-    <div className="relative" style={{ width: 680, height: 600 }}>
+    <div className="relative" style={{ width: 680, height: 600, marginTop: 100 }}>
       {/* === Chopper — anchored to bottom-left of group === */}
       <motion.div
         className="absolute select-none pointer-events-none"
