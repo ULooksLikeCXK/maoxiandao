@@ -13,7 +13,7 @@ export default function FoodCard({ food, rarityConfig, onReset }) {
       {/* === Drooling Chopper — left side === */}
       <motion.div
         className="absolute select-none pointer-events-none shrink-0"
-        style={{ left: -85, bottom: 100, zIndex: 2 }}
+        style={{ left: 15, bottom: 100, zIndex: 2 }}
         initial={{ opacity: 0, x: -40, scale: 0.8 }}
         animate={{ opacity: 1, x: 0, scale: 1 }}
         transition={{ type: 'spring', stiffness: 140, damping: 12, delay: 0.15 }}
