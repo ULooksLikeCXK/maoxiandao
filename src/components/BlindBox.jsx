@@ -25,7 +25,7 @@ export default function DevilFruit({ phase, onOpen }) {
           <motion.img
             src="/maoxiandao/chopper.png"
             alt="乔巴"
-            style={{ width: 320, height: 'auto', filter: 'drop-shadow(2px 4px 6px rgba(0,0,0,0.25))' }}
+            style={{ width: 96, height: 'auto', filter: 'drop-shadow(2px 4px 6px rgba(0,0,0,0.25))' }}
             animate={isIdle ? { y: [0, -5, 0] } : {}}
             transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
           />
@@ -140,22 +140,6 @@ export default function DevilFruit({ phase, onOpen }) {
         </motion.button>
       </div>
 
-      {/* hint text */}
-      {isIdle && (
-        <p className="font-body text-base font-bold tracking-wide text-center" style={{ color: 'var(--color-dim)' }}>
-          恶魔果实藏着什么力量？点一下揭晓
-        </p>
-      )}
-      {isShaking && (
-        <p className="font-body text-base font-bold tracking-wide" style={{ color: 'var(--color-brand)' }}>
-          果实正在觉醒…
-        </p>
-      )}
-      {isOpening && (
-        <p className="font-body text-base font-bold tracking-wide" style={{ color: 'var(--color-fruit)' }}>
-          能力觉醒！马上揭晓 💥
-        </p>
-      )}
-    </div>
+          </div>
   )
 }
