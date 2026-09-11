@@ -11,7 +11,7 @@ export default function DevilFruit({ phase, onOpen }) {
   if (isRevealed) return null
 
   return (
-    <div className="relative" style={{ width: 956, height: 675, marginTop: 400 }}>
+    <div className="relative" style={{ width: 946, height: 675, marginTop: 400 }}>
       {/* === Chopper — anchored to bottom-left of group === */}
       <motion.div
         className="absolute select-none pointer-events-none"
@@ -31,12 +31,12 @@ export default function DevilFruit({ phase, onOpen }) {
       {/* === Sanji — anchored to bottom-center of group === */}
       <motion.div
         className="absolute select-none pointer-events-none"
-        style={{ bottom: 390, left: '50%', transform: 'translateX(-50%)', zIndex: 1 }}
+        style={{ bottom: 290, left: '50%', transform: 'translateX(-50%)', zIndex: 1 }}
       >
         <img
           src="/maoxiandao/sanji.png"
           alt="山治"
-          style={{ width: 956, height: 'auto', filter: 'drop-shadow(0 6px 12px rgba(0,0,0,0.25))' }}
+          style={{ width: 946, height: 'auto', filter: 'drop-shadow(0 6px 12px rgba(0,0,0,0.25))' }}
         />
       </motion.div>
 
