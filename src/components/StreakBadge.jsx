@@ -7,25 +7,27 @@ export default function StreakBadge({ streak }) {
 
   return (
     <motion.div
-      className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold"
+      className="flex items-center gap-2 px-3.5 py-2 rounded-full text-sm font-extrabold"
       style={{
-        background: 'linear-gradient(135deg, rgba(245,158,11,0.15), rgba(239,68,68,0.15))',
-        border: '1px solid rgba(245,158,11,0.3)',
+        background: 'linear-gradient(135deg, rgba(255,107,53,0.1), rgba(255,179,71,0.08))',
+        border: '2px solid rgba(255,179,71,0.25)',
+        fontFamily: "'Nunito', sans-serif",
       }}
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ type: 'spring', stiffness: 300, delay: 0.3 }}
     >
       <span className="relative">
-        <Flame className="w-5 h-5 text-orange-400" />
+        <Flame className="w-5 h-5" style={{ color: '#FF6B35' }} />
         <motion.span
-          className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-yellow-400"
+          className="absolute -top-1 -right-1 w-2 h-2 rounded-full"
+          style={{ background: '#FFD93D' }}
           animate={{ opacity: [0, 1, 0], scale: [0.5, 1.5, 0.5] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         />
       </span>
-      <span className="text-orange-300">
-        连续打卡 <span className="text-orange-400 text-base">{count}</span> 天
+      <span style={{ color: '#8B6F5C' }}>
+        连续 <span style={{ color: '#FF6B35', fontSize: '1.1em' }}>{count}</span> 天
       </span>
     </motion.div>
   )

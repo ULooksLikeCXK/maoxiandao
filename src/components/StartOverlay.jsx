@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Gift, Sparkles } from 'lucide-react'
+import { Sparkles } from 'lucide-react'
 
 export default function StartOverlay({ firstVisit, streak, onDismiss }) {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
     if (firstVisit) {
-      const t = setTimeout(() => setVisible(true), 400)
+      const t = setTimeout(() => setVisible(true), 300)
       return () => clearTimeout(t)
     }
   }, [firstVisit])
@@ -18,7 +18,7 @@ export default function StartOverlay({ firstVisit, streak, onDismiss }) {
     <AnimatePresence>
       <motion.div
         className="fixed inset-0 z-50 flex items-center justify-center p-6"
-        style={{ background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(10px)' }}
+        style={{ background: 'rgba(45,27,14,0.7)', backdropFilter: 'blur(12px)' }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -28,27 +28,42 @@ export default function StartOverlay({ firstVisit, streak, onDismiss }) {
           className="flex flex-col items-center gap-5 text-center max-w-sm"
           initial={{ scale: 0.8, opacity: 0, y: 30 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
-          transition={{ type: 'spring', stiffness: 200, damping: 20, delay: 0.2 }}
+          transition={{ type: 'spring', stiffness: 200, damping: 20, delay: 0.15 }}
           onClick={e => e.stopPropagation()}
         >
-          {/* Icon */}
+          {/* Gachapon machine icon */}
           <motion.div
             className="relative"
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
           >
             <div
-              className="w-28 h-28 rounded-3xl flex items-center justify-center"
+              className="w-32 h-32 rounded-full flex items-center justify-center"
               style={{
-                background: 'linear-gradient(145deg, #2d1b69, #7c3aed)',
-                boxShadow: '0 0 60px rgba(124,58,237,0.5), 0 0 100px rgba(236,72,153,0.2)',
+                background: 'linear-gradient(160deg, #FFF 0%, #FFF8F0 70%, #FFECD2 100%)',
+                boxShadow: `
+                  8px 8px 24px rgba(180,140,100,0.2),
+                  -6px -6px 20px rgba(255,255,255,0.9),
+                  inset 2px 2px 4px rgba(255,255,255,0.8)
+                `,
+                border: '3px solid rgba(255,179,71,0.25)',
               }}
             >
-              <Gift className="w-14 h-14 text-white" />
+              <span
+                className="text-5xl font-black"
+                style={{
+                  fontFamily: "'Bricolage Grotesque', sans-serif",
+                  background: 'linear-gradient(135deg, #FF6B35, #FFB347)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                }}
+              >
+                ?
+              </span>
             </div>
             <motion.span
-              className="absolute -top-2 -right-2 text-3xl"
-              animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.2, 1] }}
+              className="absolute -top-1.5 -right-1.5 text-4xl"
+              animate={{ rotate: [0, 12, -12, 0], scale: [1, 1.25, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
               ✨
@@ -58,43 +73,43 @@ export default function StartOverlay({ firstVisit, streak, onDismiss }) {
           {/* Title */}
           <div>
             <h1
-              className="text-3xl font-black mb-1"
-              style={{
-                background: 'linear-gradient(135deg, #e9d5ff, #c084fc, #f59e0b)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-              }}
+              className="text-4xl font-black mb-1 tracking-tight"
+              style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
             >
-              冒险岛
+              <span style={{ color: '#FF6B35' }}>冒险</span>
+              <span style={{ color: '#FFB347' }}>岛</span>
             </h1>
-            <p className="text-lg font-bold text-purple-200">盲盒吃饭</p>
+            <p className="text-lg font-extrabold" style={{ fontFamily: "'Nunito', sans-serif", color: '#FFD93D' }}>
+              扭蛋 · 吃饭
+            </p>
           </div>
 
           {/* Description */}
-          <p className="text-sm text-purple-400 leading-relaxed">
+          <p className="text-sm leading-relaxed font-semibold" style={{ fontFamily: "'Nunito', sans-serif", color: '#D4B896' }}>
             每天不知道吃什么？<br />
-            打开盲盒，让命运帮你决定今天的美味冒险！<br />
-            <span className="text-purple-500 text-xs mt-1 block">
-              连续打卡还有连击加成哦 🔥
-            </span>
+            转动扭蛋机，让命运帮你决定<br />
+            今天的美味冒险！
           </p>
 
-          {/* Start button */}
+          {/* CTA */}
           <motion.button
-            className="mt-4 px-10 py-4 rounded-full text-lg font-bold text-white cursor-pointer"
+            className="mt-4 px-12 py-4 rounded-full text-lg font-extrabold text-white cursor-pointer shadow-xl"
             style={{
-              background: 'linear-gradient(135deg, #7c3aed, #ec4899)',
-              boxShadow: '0 0 30px rgba(236,72,153,0.4), 0 4px 20px rgba(0,0,0,0.3)',
+              fontFamily: "'Nunito', sans-serif",
+              background: 'linear-gradient(135deg, #FF6B35 0%, #FFB347 100%)',
+              boxShadow: '0 6px 28px rgba(255,107,53,0.4), 0 2px 6px rgba(0,0,0,0.1)',
             }}
-            whileHover={{ scale: 1.05, boxShadow: '0 0 50px rgba(236,72,153,0.6)' }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.06, boxShadow: '0 8px 36px rgba(255,107,53,0.5), 0 4px 10px rgba(0,0,0,0.12)' }}
+            whileTap={{ scale: 0.94 }}
             onClick={onDismiss}
           >
             <Sparkles className="inline w-5 h-5 mr-1.5 -mt-0.5" />
             开始冒险
           </motion.button>
 
-          <p className="text-xs text-purple-600">点击任意处或按按钮开始</p>
+          <p className="text-xs font-semibold" style={{ color: '#8B6F5C' }}>
+            点击任意处或按按钮开始
+          </p>
         </motion.div>
       </motion.div>
     </AnimatePresence>

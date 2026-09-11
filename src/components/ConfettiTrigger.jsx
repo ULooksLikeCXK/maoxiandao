@@ -6,54 +6,35 @@ export default function ConfettiTrigger({ trigger, rarityConfig }) {
 
   useEffect(() => {
     if (trigger && !prevTrigger.current && rarityConfig) {
-      const duration = 1500
-      const end = Date.now() + duration
-
-      const frame = () => {
-        confetti({
-          particleCount: rarityConfig.confetti / 10,
-          spread: rarityConfig.spread,
-          origin: { x: 0.5, y: 0.5 },
-          colors: rarityConfig.colors,
-          startVelocity: 30,
-          gravity: 0.8,
-          scalar: 1.2,
-        })
-
-        if (rarityConfig.label && Date.now() < end) {
-          requestAnimationFrame(frame)
-        }
-      }
-
-      // Fire initial big burst
+      // Initial burst
       confetti({
         particleCount: rarityConfig.confetti,
         spread: rarityConfig.spread,
         origin: { x: 0.5, y: 0.45 },
-        colors: rarityConfig.colors,
+        colors: ['#FF6B35', '#FFB347', '#FFD93D', '#FF8FAB', '#80FFDB', '#2EC4B6'],
         startVelocity: 45,
-        gravity: 1,
+        gravity: 0.9,
         scalar: 1.5,
       })
 
-      // For legendary, fire multiple bursts
+      // Legendary: extra treats
       if (rarityConfig.label.includes('传说')) {
         setTimeout(() => {
           confetti({
             particleCount: 200,
             spread: 360,
             origin: { x: 0.5, y: 0.5 },
-            colors: ['#f59e0b', '#fbbf24', '#fcd34d'],
+            colors: ['#FFD93D', '#FFB347', '#FF6B35'],
             startVelocity: 60,
             gravity: 0.5,
             scalar: 2,
+            shapes: ['star'],
           })
         }, 300)
 
-        // Side cannons
         setTimeout(() => {
-          confetti({ particleCount: 100, angle: 60, spread: 80, origin: { x: 0, y: 0.6 }, colors: ['#f59e0b', '#ef4444'] })
-          confetti({ particleCount: 100, angle: 120, spread: 80, origin: { x: 1, y: 0.6 }, colors: ['#f59e0b', '#ef4444'] })
+          confetti({ particleCount: 100, angle: 60, spread: 80, origin: { x: 0, y: 0.6 }, colors: ['#FF8FAB', '#FFD93D'] })
+          confetti({ particleCount: 100, angle: 120, spread: 80, origin: { x: 1, y: 0.6 }, colors: ['#80FFDB', '#2EC4B6'] })
         }, 600)
       }
 
@@ -63,15 +44,13 @@ export default function ConfettiTrigger({ trigger, rarityConfig }) {
             particleCount: 150,
             spread: 180,
             origin: { x: 0.5, y: 0.4 },
-            colors: rarityConfig.colors,
+            colors: ['#FFB347', '#FFD93D', '#FF6B35', '#FF8FAB'],
             startVelocity: 40,
             gravity: 0.7,
             scalar: 1.3,
           })
         }, 400)
       }
-
-      frame()
     }
 
     prevTrigger.current = trigger
