@@ -15,7 +15,7 @@ export default function DevilFruit({ phase, onOpen }) {
       {/* === Chopper — anchored to bottom-left of group === */}
       <motion.div
         className="absolute select-none pointer-events-none"
-        style={{ left: 120, bottom: 450, zIndex: 2 }}
+        style={{ left: 220, bottom: 650, zIndex: 2 }}
         animate={isShaking ? { y: [0, -6, 0, -4, 0], rotate: [0, -2, 2, -1, 0] } : {}}
         transition={isShaking ? { duration: 0.6, repeat: Infinity, ease: 'easeInOut' } : {}}
       >
@@ -31,7 +31,7 @@ export default function DevilFruit({ phase, onOpen }) {
       {/* === Sanji — anchored to bottom-center of group === */}
       <motion.div
         className="absolute select-none pointer-events-none"
-        style={{ bottom: 340, left: '50%', transform: 'translateX(-50%)', zIndex: 1 }}
+        style={{ bottom: 440, left: '50%', transform: 'translateX(-50%)', zIndex: 1 }}
       >
         <img
           src="/maoxiandao/sanji.png"
