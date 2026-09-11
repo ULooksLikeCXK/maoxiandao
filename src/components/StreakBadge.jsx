@@ -5,14 +5,14 @@ export default function StreakBadge({ streak }) {
 
   return (
     <div
-      className="flex items-center gap-1 font-body text-sm tracking-wider"
+      className="flex items-center gap-1 font-body text-sm tracking-wide"
       style={{ color: 'var(--color-dim)' }}
     >
       <Flame
         className="w-4 h-4"
         style={{
-          color: count > 0 ? 'var(--color-accent)' : 'var(--color-dim)',
-          fill: count > 0 ? 'var(--color-accent)' : 'none',
+          color: count > 0 ? 'var(--color-brand)' : 'var(--color-dim)',
+          fill: count > 0 ? 'var(--color-brand)' : 'none',
         }}
       />
       <span>连续 {count} 天</span>

@@ -3,13 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react'
 
 function groupByDate(h) {
-  const g = []
-  const s = new Set()
-  for (const i of h) {
-    if (s.has(i.date)) continue
-    s.add(i.date)
-    g.push({ date: i.date, items: h.filter(x => x.date === i.date) })
-  }
+  const g = []; const s = new Set()
+  for (const i of h) { if (s.has(i.date)) continue; s.add(i.date); g.push({ date: i.date, items: h.filter(x => x.date === i.date) }) }
   return g
 }
 
@@ -34,9 +29,8 @@ export default function HistoryPanel({ history }) {
 
   return (
     <>
-      {/* Trigger */}
       <motion.button
-        className="fixed top-6 right-6 z-40 font-body text-sm tracking-wider cursor-pointer bg-transparent border-none"
+        className="fixed top-6 right-6 z-40 font-body text-sm tracking-wide cursor-pointer bg-transparent border-none"
         style={{ color: 'var(--color-dim)' }}
         whileHover={{ color: 'var(--color-ink)' }}
         onClick={() => setOpen(true)}
@@ -44,21 +38,17 @@ export default function HistoryPanel({ history }) {
         记录
       </motion.button>
 
-      {/* Backdrop */}
       <AnimatePresence>
         {open && (
           <motion.div
             className="fixed inset-0 z-40"
-            style={{ background: 'rgba(0,0,0,0.12)' }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            style={{ background: 'rgba(15,23,42,0.10)' }}
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             onClick={() => setOpen(false)}
           />
         )}
       </AnimatePresence>
 
-      {/* Drawer */}
       <motion.div
         className="fixed top-0 right-0 z-50 h-full w-72 max-w-[85vw] overflow-y-auto flex flex-col"
         style={{
@@ -69,15 +59,11 @@ export default function HistoryPanel({ history }) {
         animate={{ x: open ? 0 : '100%' }}
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       >
-        {/* Header */}
         <div
           className="flex items-center justify-between shrink-0 px-5 py-4"
           style={{ borderBottom: '1px solid var(--color-border)' }}
         >
-          <h2
-            className="font-bold text-base tracking-wide"
-            style={{ fontFamily: 'var(--font-body)', color: 'var(--color-ink)' }}
-          >
+          <h2 className="font-bold text-base tracking-wide" style={{ color: 'var(--color-ink)' }}>
             开盒记录
           </h2>
           <button
@@ -89,26 +75,20 @@ export default function HistoryPanel({ history }) {
           </button>
         </div>
 
-        {/* List */}
         <div className="flex-1 px-4 py-4 space-y-5">
           {grouped.length === 0 ? (
             <div className="flex items-center justify-center h-40">
-              <p className="font-body text-sm" style={{ color: 'var(--color-dim)' }}>
-                暂无记录
-              </p>
+              <p className="font-body text-sm" style={{ color: 'var(--color-dim)' }}>暂无记录</p>
             </div>
           ) : (
             grouped.map((g, gi) => (
               <motion.div
                 key={g.date}
-                initial={{ opacity: 0, x: 12 }}
+                initial={{ opacity: 0, x: 10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: gi * 0.04 }}
               >
-                <p
-                  className="font-body text-xs mb-2.5 tracking-wider font-medium"
-                  style={{ color: 'var(--color-dim)' }}
-                >
+                <p className="font-body text-xs mb-2.5 tracking-wide font-medium" style={{ color: 'var(--color-dim)' }}>
                   {fmt(g.date)}
                 </p>
                 <div className="space-y-1.5">
@@ -119,21 +99,15 @@ export default function HistoryPanel({ history }) {
                       style={{
                         background: 'var(--color-muted)',
                         border: '1px solid var(--color-border)',
-                        borderRadius: 6,
+                        borderRadius: 8,
                       }}
                     >
                       <span className="text-xl leading-none">{item.emoji}</span>
                       <div className="min-w-0">
-                        <p
-                          className="font-body text-sm font-medium truncate"
-                          style={{ color: 'var(--color-ink)' }}
-                        >
+                        <p className="font-body text-sm font-medium truncate" style={{ color: 'var(--color-ink)' }}>
                           {item.name}
                         </p>
-                        <p
-                          className="font-body text-xs tracking-wider"
-                          style={{ color: 'var(--color-dim)' }}
-                        >
+                        <p className="font-body text-xs tracking-wide" style={{ color: 'var(--color-dim)' }}>
                           {item.category}
                         </p>
                       </div>
