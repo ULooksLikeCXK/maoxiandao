@@ -11,11 +11,11 @@ export default function DevilFruit({ phase, onOpen }) {
   if (isRevealed) return null
 
   return (
-    <div className="relative" style={{ width: 765, height: 675, marginTop: 400 }}>
+    <div className="relative" style={{ width: 956, height: 675, marginTop: 400 }}>
       {/* === Chopper — anchored to bottom-left of group === */}
       <motion.div
         className="absolute select-none pointer-events-none"
-        style={{ left: 170, bottom: 650, zIndex: 2 }}
+        style={{ left: 195, bottom: 650, zIndex: 2 }}
         animate={isShaking ? { y: [0, -6, 0, -4, 0], rotate: [0, -2, 2, -1, 0] } : {}}
         transition={isShaking ? { duration: 0.6, repeat: Infinity, ease: 'easeInOut' } : {}}
       >
@@ -36,7 +36,7 @@ export default function DevilFruit({ phase, onOpen }) {
         <img
           src="/maoxiandao/sanji.png"
           alt="山治"
-          style={{ width: 765, height: 'auto', filter: 'drop-shadow(0 6px 12px rgba(0,0,0,0.25))' }}
+          style={{ width: 956, height: 'auto', filter: 'drop-shadow(0 6px 12px rgba(0,0,0,0.25))' }}
         />
       </motion.div>
 
