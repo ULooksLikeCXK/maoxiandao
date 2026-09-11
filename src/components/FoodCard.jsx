@@ -1,155 +1,117 @@
 import { motion } from 'framer-motion'
-import { ChefHat, Star, Zap, RefreshCw } from 'lucide-react'
-
-const RARITY_STYLE = {
-  common: { badge: '', bg: '#F9FAFB', border: '#E5E7EB', text: '#6B7280' },
-  rare: { badge: '稀有', bg: 'rgba(245,158,11,0.06)', border: 'rgba(245,158,11,0.2)', text: '#D97706' },
-  legendary: { badge: '传说', bg: 'rgba(232,87,58,0.06)', border: 'rgba(232,87,58,0.25)', text: '#E8573A' },
-}
+import { RefreshCw } from 'lucide-react'
 
 export default function FoodCard({ food, rarityConfig, onReset }) {
   if (!food) return null
-  const style = RARITY_STYLE[food.rarity]
+
+  const isLegendary = food.rarity === 'legendary'
+  const isRare = food.rarity === 'rare'
 
   return (
-    <motion.div
-      className="w-full max-w-sm mx-auto shadow-card"
-      style={{
-        borderRadius: 24,
-        background: '#FFFFFF',
-        border: '1.5px solid rgba(0,0,0,0.05)',
-        overflow: 'hidden',
-      }}
-      initial={{ scale: 0.9, opacity: 0, y: 30 }}
-      animate={{ scale: 1, opacity: 1, y: 0 }}
-      transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-    >
-      {/* Top accent bar */}
-      <div
-        className="h-1.5"
+    <div className="flex flex-col items-center max-w-xs mx-auto">
+      {/* Food emoji — hero */}
+      <motion.span
+        className="text-7xl select-none"
+        initial={{ scale: 0, rotate: -10 }}
+        animate={{ scale: 1, rotate: 0 }}
+        transition={{ type: 'spring', stiffness: 200, damping: 16, delay: 0.1 }}
+      >
+        {food.emoji}
+      </motion.span>
+
+      {/* Food name — seal stamp style */}
+      <motion.h2
+        className="font-display text-2xl font-bold mt-6 text-center leading-tight tracking-wide"
         style={{
-          background: food.rarity === 'legendary'
-            ? 'linear-gradient(90deg, #E8573A, #F59E0B, #E8573A)'
-            : food.rarity === 'rare'
-              ? 'linear-gradient(90deg, #F59E0B, #FBBF24)'
-              : 'linear-gradient(90deg, #E8573A, #f06a55)',
+          color: 'var(--ink)',
+          border: isLegendary ? '3px solid var(--seal)' : 'none',
+          padding: isLegendary ? '8px 24px' : '0',
+          display: isLegendary ? 'inline-block' : 'block',
+          transform: isLegendary ? 'rotate(-0.5deg)' : 'none',
         }}
-      />
+        initial={isLegendary ? { scale: 3, rotate: -12, opacity: 0 } : { opacity: 0, y: 12 }}
+        animate={isLegendary
+          ? { scale: 1, rotate: -0.5, opacity: 0.92 }
+          : { opacity: 1, y: 0 }
+        }
+        transition={isLegendary
+          ? { type: 'spring', stiffness: 180, damping: 14, delay: 0.15 }
+          : { delay: 0.2 }
+        }
+      >
+        {food.name}
+      </motion.h2>
 
-      <div className="flex flex-col items-center gap-3 px-8 py-8 text-center">
-        {/* Food emoji — the hero */}
-        <motion.div
-          className="w-24 h-24 flex items-center justify-center"
-          style={{
-            borderRadius: '50%',
-            background: 'linear-gradient(160deg, #FDF8F3, #FBF7F2)',
-            border: '1px solid rgba(0,0,0,0.04)',
-          }}
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ type: 'spring', stiffness: 250, damping: 16, delay: 0.1 }}
-        >
-          <span className="text-5xl select-none">{food.emoji}</span>
-        </motion.div>
-
-        {/* Rarity badge */}
-        {food.rarity !== 'common' && (
-          <motion.span
-            className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold"
-            style={{ background: style.bg, color: style.text, border: `1px solid ${style.border}` }}
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25 }}
-          >
-            {food.rarity === 'legendary' ? <Zap className="w-3 h-3" /> : <Star className="w-3 h-3" />}
-            {style.badge}
-          </motion.span>
-        )}
-
-        {/* Food name */}
-        <motion.h2
-          className="text-2xl font-bold tracking-tight"
-          style={{ color: '#1A1A2E' }}
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          {food.name}
-        </motion.h2>
-
-        {/* Category */}
-        <motion.span
-          className="inline-block px-3 py-1 rounded-full text-xs font-medium"
-          style={{ background: 'rgba(8,145,178,0.06)', color: '#0891B2', border: '1px solid rgba(8,145,178,0.12)' }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-        >
+      {/* Category + rarity hint — inline, minimal */}
+      <motion.div
+        className="flex items-center gap-2 mt-3"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+      >
+        <span className="font-body text-xs tracking-widest" style={{ color: 'var(--text-dim)' }}>
           {food.category}
-        </motion.span>
+        </span>
+        {isRare && (
+          <span className="font-body text-xs" style={{ color: 'var(--gold)' }}>· 稀有</span>
+        )}
+        {isLegendary && (
+          <span className="font-body text-xs font-bold" style={{ color: 'var(--seal)' }}>· 传说</span>
+        )}
+      </motion.div>
 
-        {/* Description */}
-        <motion.p
-          className="text-sm leading-relaxed max-w-xs"
-          style={{ color: '#6B7280' }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.35 }}
-        >
-          {food.description}
-        </motion.p>
+      {/* Description — quiet */}
+      <motion.p
+        className="font-body text-sm mt-4 text-center leading-relaxed max-w-xs"
+        style={{ color: 'var(--text-dim)' }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.35 }}
+      >
+        {food.description}
+      </motion.p>
 
-        {/* Tags */}
-        <motion.div
-          className="flex gap-1.5 flex-wrap justify-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-        >
-          {food.tags.map(tag => (
-            <span
-              key={tag}
-              className="px-2.5 py-1 rounded-md text-xs font-medium"
-              style={{ background: 'rgba(0,0,0,0.03)', color: '#9CA3AF' }}
-            >
-              #{tag}
-            </span>
-          ))}
-        </motion.div>
-      </div>
-
-      {/* Bottom actions */}
-      <div
-        className="flex border-t"
-        style={{ borderColor: 'rgba(0,0,0,0.04)' }}
+      {/* Actions */}
+      <motion.div
+        className="flex items-center gap-6 mt-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.45 }}
       >
         <motion.button
-          className="flex-1 py-4 text-sm font-semibold cursor-pointer flex items-center justify-center gap-2"
-          style={{ color: '#1A1A2E', background: 'rgba(0,0,0,0.01)' }}
-          whileHover={{ background: 'rgba(0,0,0,0.03)' }}
-          whileTap={{ scale: 0.98 }}
+          className="font-body text-sm cursor-pointer flex items-center gap-1.5"
+          style={{ color: 'var(--text-dim)' }}
+          whileHover={{ color: 'var(--ink)' }}
           onClick={onReset}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
         >
-          <RefreshCw className="w-4 h-4" />
+          <RefreshCw className="w-3.5 h-3.5" />
           换一个
         </motion.button>
         <motion.button
-          className="flex-1 py-4 text-sm font-semibold text-white cursor-pointer flex items-center justify-center gap-2"
-          style={{ background: '#1A1A2E' }}
-          whileHover={{ background: '#2D2D44' }}
-          whileTap={{ scale: 0.98 }}
+          className="font-body text-sm px-8 py-3 cursor-pointer"
+          style={{
+            background: 'var(--ink)',
+            color: 'var(--white)',
+            borderRadius: 2,
+          }}
+          whileHover={{ background: '#333' }}
+          whileTap={{ scale: 0.97 }}
           onClick={onReset}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.55 }}
         >
-          <ChefHat className="w-4 h-4" />
           就吃这个
         </motion.button>
-      </div>
-    </motion.div>
+      </motion.div>
+
+      {/* Daily fortune-style closing line */}
+      <motion.p
+        className="font-display text-xs mt-8 tracking-widest"
+        style={{ color: 'var(--text-dim)', opacity: 0.5 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.5 }}
+        transition={{ delay: 0.6 }}
+      >
+        — 今日宜食 —
+      </motion.p>
+    </div>
   )
 }

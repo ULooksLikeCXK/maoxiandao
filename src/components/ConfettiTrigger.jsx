@@ -6,49 +6,36 @@ export default function ConfettiTrigger({ trigger, rarityConfig }) {
 
   useEffect(() => {
     if (trigger && !prev.current && rarityConfig) {
-      const colors = ['#E8573A', '#F59E0B', '#FBBF24', '#0891B2', '#A78BFA', '#34D399']
+      const colors = ['#C41E3A', '#C8963E', '#2D2D2D', '#8C8078']
 
       confetti({
         particleCount: rarityConfig.confetti,
         spread: rarityConfig.spread,
-        origin: { x: 0.5, y: 0.5 },
+        origin: { x: 0.5, y: 0.55 },
         colors,
-        startVelocity: 40,
+        startVelocity: 35,
         gravity: 0.8,
-        scalar: 1.4,
+        scalar: 1.2,
       })
 
       if (rarityConfig.label.includes('传说')) {
         setTimeout(() => {
           confetti({
-            particleCount: 200,
-            spread: 360,
-            origin: { x: 0.5, y: 0.5 },
-            colors: ['#F59E0B', '#FBBF24', '#FDE68A', '#E8573A'],
-            startVelocity: 55,
-            gravity: 0.5,
-            scalar: 2,
-            shapes: ['star'],
+            particleCount: 180, spread: 360, origin: { x: 0.5, y: 0.5 },
+            colors: ['#C8963E', '#F5D88A', '#C41E3A'],
+            startVelocity: 50, gravity: 0.5, scalar: 1.8, shapes: ['star'],
           })
-        }, 250)
-        setTimeout(() => {
-          confetti({ particleCount: 80, angle: 60, spread: 70, origin: { x: 0, y: 0.6 }, colors: ['#E8573A', '#F59E0B'] })
-          confetti({ particleCount: 80, angle: 120, spread: 70, origin: { x: 1, y: 0.6 }, colors: ['#0891B2', '#34D399'] })
-        }, 500)
+        }, 200)
       }
 
       if (rarityConfig.label.includes('稀有')) {
         setTimeout(() => {
           confetti({
-            particleCount: 120,
-            spread: 150,
-            origin: { x: 0.5, y: 0.45 },
-            colors: ['#F59E0B', '#FBBF24', '#E8573A'],
-            startVelocity: 35,
-            gravity: 0.7,
-            scalar: 1.2,
+            particleCount: 100, spread: 140, origin: { x: 0.5, y: 0.5 },
+            colors: ['#C8963E', '#C41E3A'],
+            startVelocity: 30, gravity: 0.7, scalar: 1.1,
           })
-        }, 350)
+        }, 300)
       }
     }
     prev.current = trigger

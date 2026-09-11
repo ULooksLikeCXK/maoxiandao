@@ -4,26 +4,23 @@ import { motion } from 'framer-motion'
 export default function CategoryChips({ selected, onChange }) {
   return (
     <div
-      className="flex gap-2 overflow-x-auto pb-2 px-1"
-      style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      className="flex gap-1.5 overflow-x-auto pb-1"
+      style={{ scrollbarWidth: 'none' }}
     >
       {CATEGORIES.map((cat, i) => {
-        const active = selected === cat
+        const active = cat === selected
         return (
           <motion.button
             key={cat}
-            className="shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap cursor-pointer transition-colors"
+            className="shrink-0 px-3.5 py-1.5 text-xs cursor-pointer font-body tracking-wide"
             style={{
-              background: active ? '#1A1A2E' : '#FFFFFF',
-              color: active ? '#FFFFFF' : '#6B7280',
-              border: active ? '1.5px solid #1A1A2E' : '1.5px solid rgba(0,0,0,0.06)',
-              boxShadow: active ? '0 2px 8px rgba(0,0,0,0.08)' : 'none',
+              background: active ? 'var(--ink)' : 'transparent',
+              color: active ? 'var(--white)' : 'var(--text-dim)',
+              border: active ? '1px solid var(--ink)' : '1px solid transparent',
+              borderRadius: 2,
             }}
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.96 }}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.015 }}
+            whileHover={{ color: active ? undefined : 'var(--ink)', borderColor: active ? undefined : 'var(--rule)' }}
+            whileTap={{ scale: 0.97 }}
             onClick={() => onChange(cat)}
           >
             {cat}
