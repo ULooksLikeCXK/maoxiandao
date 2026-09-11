@@ -60,7 +60,7 @@ export default function App() {
       </div>
 
       {/* Main stage */}
-      <main className="flex-1 flex items-center justify-center px-6 pb-10 overflow-y-auto">
+      <main className="flex-1 flex items-center justify-center px-6 pb-10 overflow-hidden">
         <div className="flex flex-col items-center w-full max-w-lg">
           {showFood ? (
             <FoodCard food={selectedFood} rarityConfig={rarityConfig} onReset={reset} />
