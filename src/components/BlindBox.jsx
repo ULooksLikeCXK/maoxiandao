@@ -34,7 +34,7 @@ export default function DevilFruit({ phase, onOpen }) {
         {/* Sanji — centered, holding the bowl */}
         <motion.div
           className="absolute select-none pointer-events-none"
-          style={{ bottom: 50, left: '50%', transform: 'translateX(-50%)', zIndex: 1 }}
+          style={{ bottom: 70, left: '50%', transform: 'translateX(-50%)', zIndex: 1 }}
         >
           <img
             src="/maoxiandao/sanji.png"
