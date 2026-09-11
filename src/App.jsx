@@ -8,6 +8,29 @@ import HistoryPanel from './components/HistoryPanel'
 import StartOverlay from './components/StartOverlay'
 import ConfettiTrigger from './components/ConfettiTrigger'
 
+function CapsuleLogo() {
+  return (
+    <div className="relative shrink-0 select-none" style={{ width: 30, height: 30 }}>
+      <div
+        style={{
+          position: 'absolute', top: 0, left: 0, width: 30, height: 15,
+          background: 'var(--color-brand)',
+          borderRadius: '999px 999px 0 0',
+          boxShadow: 'inset 0 0 0 3px var(--color-ink)',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute', bottom: 0, left: 0, width: 30, height: 15,
+          background: 'var(--color-surface)',
+          borderRadius: '0 0 999px 999px',
+          boxShadow: 'inset 0 0 0 3px var(--color-ink)',
+        }}
+      />
+    </div>
+  )
+}
+
 export default function App() {
   const {
     phase, selectedFood, rarityConfig,
@@ -26,25 +49,28 @@ export default function App() {
     >
       <ConfettiTrigger trigger={showFood} rarityConfig={rarityConfig} />
       <StartOverlay firstVisit={firstVisit} streak={streak} onDismiss={markVisited} />
-      <HistoryPanel history={history} />
 
       {/* Header */}
-      <header className="shrink-0 flex items-center justify-between pt-6 px-6 pb-2">
-        <div className="flex items-baseline gap-2.5">
+      <header className="shrink-0 flex items-center justify-between pt-5 px-5 pb-2">
+        <div className="flex items-center gap-2.5">
+          <CapsuleLogo />
           <h1
-            className="font-bold text-lg tracking-wide select-none"
+            className="font-black text-xl tracking-wide select-none"
             style={{ fontFamily: 'var(--font-body)', color: 'var(--color-ink)' }}
           >
-            小彭今天吃什么
+            小彭今天<span style={{ color: 'var(--color-brand)' }}>吃什么</span>
           </h1>
           <span
-            className="text-xs tracking-wide select-none"
-            style={{ color: 'var(--color-dim)', fontStyle: 'italic' }}
+            className="text-[10px] tracking-[0.2em] uppercase select-none hidden sm:inline"
+            style={{ color: 'var(--color-brand)', fontFamily: 'var(--font-display)' }}
           >
-            daily food oracle
+            for my love
           </span>
         </div>
-        <StreakBadge streak={streak} />
+        <div className="flex items-center gap-2.5">
+          <StreakBadge streak={streak} />
+          <HistoryPanel history={history} />
+        </div>
       </header>
 
       {/* Categories */}
