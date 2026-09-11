@@ -15,7 +15,7 @@ export default function DevilFruit({ phase, onOpen }) {
       {/* === Chopper — anchored to bottom-left of group === */}
       <motion.div
         className="absolute select-none pointer-events-none"
-        style={{ left: 195, bottom: 650, zIndex: 2 }}
+        style={{ left: 170, bottom: 650, zIndex: 2 }}
         animate={isShaking ? { y: [0, -6, 0, -4, 0], rotate: [0, -2, 2, -1, 0] } : {}}
         transition={isShaking ? { duration: 0.6, repeat: Infinity, ease: 'easeInOut' } : {}}
       >
@@ -49,7 +49,7 @@ export default function DevilFruit({ phase, onOpen }) {
           zIndex: 5,
           left: '50%',
           marginLeft: -(FRUIT_SIZE + 16) / 2,
-          top: 30,
+          top: 80,
         }}
         animate={
           isShaking
