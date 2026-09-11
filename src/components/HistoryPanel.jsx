@@ -31,7 +31,7 @@ export default function HistoryPanel({ history }) {
     <>
       {/* trigger — pirate logbook button */}
       <motion.button
-        className="font-body text-sm font-black tracking-wide cursor-pointer flex items-center gap-1.5 px-4 py-2"
+        className="font-body text-xs font-black tracking-wide cursor-pointer flex items-center gap-1.5 px-4 py-2"
         style={{
           background: 'var(--color-surface)',
           color: 'var(--color-ink)',

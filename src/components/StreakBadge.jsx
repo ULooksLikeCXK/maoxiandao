@@ -6,7 +6,7 @@ export default function StreakBadge({ streak }) {
 
   return (
     <motion.div
-      className="flex items-center gap-1.5 font-body text-sm font-black tracking-wide px-4 py-2 select-none"
+      className="flex items-center gap-1.5 font-body text-xs font-black tracking-wide px-4 py-2 select-none"
       style={{
         background: active ? 'var(--color-gold)' : 'var(--color-muted)',
         color: active ? 'var(--color-surface)' : 'var(--color-ink)',

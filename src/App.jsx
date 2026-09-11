@@ -36,7 +36,7 @@ export default function App() {
             style={{ width: 32, height: 32, objectFit: 'contain', filter: 'drop-shadow(0 2px 3px rgba(0,0,0,0.2))' }}
           />
           <h1
-            className="font-black text-xl tracking-wide select-none"
+            className="font-black text-lg tracking-wide select-none"
             style={{ fontFamily: 'var(--font-body)', color: 'var(--color-ink)' }}
           >
             小彭今天<span style={{ color: 'var(--color-brand)' }}>吃什么</span>
