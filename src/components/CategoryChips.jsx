@@ -4,31 +4,26 @@ import { motion } from 'framer-motion'
 export default function CategoryChips({ selected, onChange }) {
   return (
     <div
-      className="flex gap-2 overflow-x-auto pb-3 px-1 no-scrollbar max-w-full"
+      className="flex gap-2 overflow-x-auto pb-2 px-1"
       style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
     >
       {CATEGORIES.map((cat, i) => {
-        const isActive = selected === cat
+        const active = selected === cat
         return (
           <motion.button
             key={cat}
-            className="shrink-0 px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap cursor-pointer transition-all"
+            className="shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap cursor-pointer transition-colors"
             style={{
-              fontFamily: "'Nunito', sans-serif",
-              background: isActive
-                ? 'linear-gradient(135deg, #FF6B35, #FFB347)'
-                : '#FFFFFF',
-              color: isActive ? '#FFFFFF' : '#8B6F5C',
-              border: isActive ? '2px solid transparent' : '2px solid #F0E4D0',
-              boxShadow: isActive
-                ? '0 3px 12px rgba(255,107,53,0.25), 0 1px 3px rgba(0,0,0,0.06)'
-                : '0 1px 3px rgba(0,0,0,0.03)',
+              background: active ? '#1A1A2E' : '#FFFFFF',
+              color: active ? '#FFFFFF' : '#6B7280',
+              border: active ? '1.5px solid #1A1A2E' : '1.5px solid rgba(0,0,0,0.06)',
+              boxShadow: active ? '0 2px 8px rgba(0,0,0,0.08)' : 'none',
             }}
-            whileHover={{ scale: 1.06, y: -2 }}
-            whileTap={{ scale: 0.94 }}
-            initial={{ opacity: 0, y: 12 }}
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.02 }}
+            transition={{ delay: i * 0.015 }}
             onClick={() => onChange(cat)}
           >
             {cat}
