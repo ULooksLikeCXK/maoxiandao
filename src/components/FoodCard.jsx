@@ -13,7 +13,7 @@ export default function FoodCard({ food, rarityConfig, onReset }) {
       {/* === Drooling Chopper — left side === */}
       <motion.div
         className="absolute select-none pointer-events-none shrink-0"
-        style={{ left: -260, bottom: 0, zIndex: 2 }}
+        style={{ left: -235, bottom: 0, zIndex: 2 }}
         initial={{ opacity: 0, x: -40, scale: 0.8 }}
         animate={{ opacity: 1, x: 0, scale: 1 }}
         transition={{ type: 'spring', stiffness: 140, damping: 12, delay: 0.15 }}
@@ -21,7 +21,7 @@ export default function FoodCard({ food, rarityConfig, onReset }) {
         <motion.img
           src="/maoxiandao/chopper-drool.png"
           alt="乔巴流口水"
-          style={{ width: 320, height: 'auto', mixBlendMode: 'multiply', filter: 'drop-shadow(2px 4px 6px rgba(0,0,0,0.25))' }}
+          style={{ width: 160, height: 'auto', mixBlendMode: 'multiply', filter: 'drop-shadow(2px 4px 6px rgba(0,0,0,0.25))' }}
           animate={{ y: [0, -4, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
         />
