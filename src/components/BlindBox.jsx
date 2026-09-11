@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 
-const FRUIT_SIZE = 135
+const FRUIT_SIZE = 68
 
 export default function DevilFruit({ phase, onOpen }) {
   const isIdle = phase === 'idle'
@@ -13,7 +13,7 @@ export default function DevilFruit({ phase, onOpen }) {
   return (
     <div className="flex flex-col items-center gap-6">
       {/* === Main stage: Chopper (left) + Sanji holding bowl (center) + Devil Fruit on bowl === */}
-      <div className="relative flex items-end justify-center" style={{ width: 680, height: 540 }}>
+      <div className="relative flex items-end justify-center" style={{ width: 340, height: 270 }}>
 
         {/* Chopper — left side */}
         <motion.div
@@ -39,7 +39,7 @@ export default function DevilFruit({ phase, onOpen }) {
           <img
             src="/maoxiandao/sanji.png"
             alt="山治"
-            style={{ width: 680, height: 'auto', filter: 'drop-shadow(0 6px 12px rgba(0,0,0,0.25))' }}
+            style={{ width: 340, height: 'auto', filter: 'drop-shadow(0 6px 12px rgba(0,0,0,0.25))' }}
           />
         </motion.div>
 
