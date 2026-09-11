@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 
-const FRUIT_SIZE = 203
+const FRUIT_SIZE = 152
 
 export default function DevilFruit({ phase, onOpen }) {
   const isIdle = phase === 'idle'
@@ -11,7 +11,7 @@ export default function DevilFruit({ phase, onOpen }) {
   if (isRevealed) return null
 
   return (
-    <div className="relative" style={{ width: 1020, height: 900, marginTop: 250 }}>
+    <div className="relative" style={{ width: 765, height: 675, marginTop: 250 }}>
       {/* === Chopper — anchored to bottom-left of group === */}
       <motion.div
         className="absolute select-none pointer-events-none"
@@ -36,7 +36,7 @@ export default function DevilFruit({ phase, onOpen }) {
         <img
           src="/maoxiandao/sanji.png"
           alt="山治"
-          style={{ width: 1020, height: 'auto', filter: 'drop-shadow(0 6px 12px rgba(0,0,0,0.25))' }}
+          style={{ width: 765, height: 'auto', filter: 'drop-shadow(0 6px 12px rgba(0,0,0,0.25))' }}
         />
       </motion.div>
 
