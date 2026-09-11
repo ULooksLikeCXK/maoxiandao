@@ -16,18 +16,18 @@ export default function CategoryChips({ selected, onChange }) {
             key={cat}
             className="font-body text-sm font-bold tracking-wide cursor-pointer px-4 py-2 whitespace-nowrap select-none"
             style={{
-              background: active ? 'var(--color-brand)' : 'var(--color-muted)',
+              background: active ? 'var(--color-ocean)' : 'var(--color-muted)',
               color: active ? '#FFFFFF' : 'var(--color-ink)',
               border: active ? '3px solid var(--color-ink)' : '3px solid var(--color-border)',
               borderRadius: 999,
-              boxShadow: active ? '0 3px 0 rgba(114, 83, 73, 0.20)' : 'none',
+              boxShadow: active ? '0 3px 0 rgba(13, 71, 161, 0.30)' : 'none',
             }}
-            whileHover={!active ? { background: 'var(--color-border)' } : {}}
+            whileHover={!active ? { background: 'var(--color-border)', color: 'var(--color-ink)' } : {}}
             whileTap={{ scale: 0.94 }}
             onClick={() => onChange(cat)}
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.015, duration: 0.2 }}
+            transition={{ delay: i * 0.012, duration: 0.2 }}
           >
             {cat}
           </motion.button>

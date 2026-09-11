@@ -8,26 +8,27 @@ import HistoryPanel from './components/HistoryPanel'
 import StartOverlay from './components/StartOverlay'
 import ConfettiTrigger from './components/ConfettiTrigger'
 
-function CapsuleLogo() {
+function JollyRoger() {
   return (
-    <div className="relative shrink-0 select-none" style={{ width: 30, height: 30 }}>
-      <div
-        style={{
-          position: 'absolute', top: 0, left: 0, width: 30, height: 15,
-          background: 'var(--color-brand)',
-          borderRadius: '999px 999px 0 0',
-          boxShadow: 'inset 0 0 0 3px var(--color-ink)',
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute', bottom: 0, left: 0, width: 30, height: 15,
-          background: 'var(--color-surface)',
-          borderRadius: '0 0 999px 999px',
-          boxShadow: 'inset 0 0 0 3px var(--color-ink)',
-        }}
-      />
-    </div>
+    <svg width="28" height="28" viewBox="0 0 48 48" style={{ display: 'block' }}>
+      {/* skull */}
+      <circle cx="24" cy="21" r="12" fill="var(--color-surface)" stroke="var(--color-ink)" strokeWidth="3" />
+      {/* eyes */}
+      <circle cx="19" cy="19" r="4" fill="var(--color-ink)" />
+      <circle cx="29" cy="19" r="4" fill="var(--color-ink)" />
+      {/* nose */}
+      <path d="M22 24 L24 28 L26 24" fill="var(--color-ink)" />
+      {/* teeth line */}
+      <line x1="16" y1="29" x2="32" y2="29" stroke="var(--color-ink)" strokeWidth="2" />
+      <line x1="20" y1="29" x2="20" y2="33" stroke="var(--color-ink)" strokeWidth="2" />
+      <line x1="24" y1="29" x2="24" y2="33" stroke="var(--color-ink)" strokeWidth="2" />
+      <line x1="28" y1="29" x2="28" y2="33" stroke="var(--color-ink)" strokeWidth="2" />
+      {/* crossbones */}
+      <line x1="4" y1="16" x2="20" y2="38" stroke="var(--color-ink)" strokeWidth="3.5" strokeLinecap="round" />
+      <line x1="44" y1="16" x2="28" y2="38" stroke="var(--color-ink)" strokeWidth="3.5" strokeLinecap="round" />
+      <circle cx="4" cy="16" r="4" fill="var(--color-surface)" stroke="var(--color-ink)" strokeWidth="3" />
+      <circle cx="44" cy="16" r="4" fill="var(--color-surface)" stroke="var(--color-ink)" strokeWidth="3" />
+    </svg>
   )
 }
 
@@ -50,10 +51,10 @@ export default function App() {
       <ConfettiTrigger trigger={showFood} rarityConfig={rarityConfig} />
       <StartOverlay firstVisit={firstVisit} streak={streak} onDismiss={markVisited} />
 
-      {/* Header */}
+      {/* Header — pirate crew banner */}
       <header className="shrink-0 flex items-center justify-between pt-5 px-5 pb-2">
         <div className="flex items-center gap-2.5">
-          <CapsuleLogo />
+          <JollyRoger />
           <h1
             className="font-black text-xl tracking-wide select-none"
             style={{ fontFamily: 'var(--font-body)', color: 'var(--color-ink)' }}

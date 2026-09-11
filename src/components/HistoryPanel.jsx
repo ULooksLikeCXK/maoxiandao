@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Heart } from 'lucide-react'
+import { X } from 'lucide-react'
 
 function groupByDate(h) {
   const g = []; const s = new Set()
@@ -29,7 +29,7 @@ export default function HistoryPanel({ history }) {
 
   return (
     <>
-      {/* trigger — sits inline in the header */}
+      {/* trigger — pirate logbook button */}
       <motion.button
         className="font-body text-sm font-black tracking-wide cursor-pointer flex items-center gap-1.5 px-4 py-2"
         style={{
@@ -37,21 +37,21 @@ export default function HistoryPanel({ history }) {
           color: 'var(--color-ink)',
           border: '3px solid var(--color-ink)',
           borderRadius: 999,
-          boxShadow: '0 3px 0 rgba(114, 83, 73, 0.16)',
+          boxShadow: '0 3px 0 rgba(62, 39, 35, 0.16)',
         }}
-        whileHover={{ y: -2, boxShadow: '0 5px 0 rgba(114, 83, 73, 0.16)' }}
-        whileTap={{ y: 2, boxShadow: '0 1px 0 rgba(114, 83, 73, 0.16)' }}
+        whileHover={{ y: -2, boxShadow: '0 5px 0 rgba(62, 39, 35, 0.16)' }}
+        whileTap={{ y: 2, boxShadow: '0 1px 0 rgba(62, 39, 35, 0.16)' }}
         onClick={() => setOpen(true)}
       >
-        <Heart size={15} fill="var(--color-brand)" color="var(--color-brand)" />
-        <span>记录</span>
+        <span className="text-sm">📜</span>
+        <span>航海日志</span>
       </motion.button>
 
       <AnimatePresence>
         {open && (
           <motion.div
             className="fixed inset-0 z-40"
-            style={{ background: 'rgba(114, 83, 73, 0.18)' }}
+            style={{ background: 'rgba(62, 39, 35, 0.22)' }}
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             onClick={() => setOpen(false)}
           />
@@ -61,7 +61,7 @@ export default function HistoryPanel({ history }) {
       <motion.div
         className="fixed top-0 right-0 z-50 h-full w-72 max-w-[85vw] overflow-y-auto flex flex-col"
         style={{
-          background: 'var(--color-surface)',
+          background: 'var(--color-canvas)',
           borderLeft: '4px solid var(--color-ink)',
         }}
         initial={{ x: '100%' }}
@@ -72,8 +72,8 @@ export default function HistoryPanel({ history }) {
           className="flex items-center justify-between shrink-0 px-5 py-4"
           style={{ borderBottom: '3px solid var(--color-border)' }}
         >
-          <h2 className="font-black text-base tracking-wide" style={{ color: 'var(--color-ink)' }}>
-            我们的美食记录
+          <h2 className="font-black text-base tracking-wide flex items-center gap-2" style={{ color: 'var(--color-ink)' }}>
+            ⛵ 航海日志
           </h2>
           <motion.button
             onClick={() => setOpen(false)}
@@ -98,13 +98,13 @@ export default function HistoryPanel({ history }) {
                 className="flex items-center justify-center"
                 style={{ width: 56, height: 56, borderRadius: '50%', background: 'var(--color-muted)' }}
               >
-                <Heart size={26} style={{ color: 'var(--color-border)' }} />
+                <span style={{ fontSize: '1.6rem' }}>🏴‍☠️</span>
               </div>
               <p className="font-body text-sm font-bold" style={{ color: 'var(--color-dim)' }}>
-                还没有记录呢
+                日志空空如也
               </p>
               <p className="font-body text-xs" style={{ color: 'var(--color-border)' }}>
-                快去扭一颗吧
+                触碰恶魔果实开始冒险吧
               </p>
             </div>
           ) : (
@@ -115,8 +115,8 @@ export default function HistoryPanel({ history }) {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: gi * 0.04 }}
               >
-                <p className="font-body text-xs mb-2.5 tracking-widest font-black" style={{ color: 'var(--color-dim)' }}>
-                  {fmt(g.date)}
+                <p className="font-body text-xs mb-2.5 tracking-widest font-black" style={{ color: 'var(--color-ocean)' }}>
+                  🗓️ {fmt(g.date)}
                 </p>
                 <div className="space-y-2">
                   {g.items.map((item, ii) => (
@@ -124,14 +124,15 @@ export default function HistoryPanel({ history }) {
                       key={`${g.date}-${ii}`}
                       className="flex items-center gap-3 px-3 py-2.5"
                       style={{
-                        background: 'var(--color-muted)',
+                        background: 'var(--color-surface)',
                         border: '2px solid var(--color-border)',
-                        borderRadius: 16,
+                        borderLeft: '4px solid var(--color-gold)',
+                        borderRadius: '0 12px 12px 0',
                       }}
                     >
                       <span
                         className="flex items-center justify-center shrink-0 text-lg leading-none"
-                        style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--color-surface)' }}
+                        style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--color-muted)' }}
                       >
                         {item.emoji}
                       </span>
@@ -150,6 +151,15 @@ export default function HistoryPanel({ history }) {
             ))
           )}
         </div>
+
+        {/* bottom Belly counter */}
+        {grouped.length > 0 && (
+          <div className="shrink-0 px-5 py-3 text-center" style={{ borderTop: '2px solid var(--color-border)' }}>
+            <p className="font-body text-xs font-black tracking-widest" style={{ color: 'var(--color-gold)' }}>
+              💰 累计冒险 {grouped.reduce((acc, g) => acc + g.items.length, 0)} 次
+            </p>
+          </div>
+        )}
       </motion.div>
     </>
   )

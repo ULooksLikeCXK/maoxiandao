@@ -1,36 +1,36 @@
 import { useEffect, useRef } from 'react'
 import confetti from 'canvas-confetti'
 
-const COLORS = ['#E05A47', '#F4A7B9', '#FBBF24', '#FFFFFF', '#725349']
+const COLORS = ['#FF8F00', '#FDD835', '#C62828', '#9C27B0', '#0D47A1', '#FFFDF5']
 
 export default function ConfettiTrigger({ trigger, rarityConfig }) {
   const prev = useRef(false)
 
   useEffect(() => {
     if (trigger && !prev.current && rarityConfig) {
-      // Main burst — hearts mixed in
+      // Main burst — gold treasure rain
       confetti({
-        particleCount: rarityConfig.confetti || 80,
+        particleCount: rarityConfig.confetti || 100,
         spread: rarityConfig.spread || 100,
         origin: { x: 0.5, y: 0.55 },
         colors: COLORS,
-        startVelocity: 36,
+        startVelocity: 38,
         gravity: 0.7,
         scalar: 1.1,
-        shapes: ['circle', 'heart'],
+        shapes: ['circle', 'star'],
       })
 
       if (rarityConfig.label?.includes('传说')) {
         setTimeout(() => {
           confetti({
-            particleCount: 200,
+            particleCount: 240,
             spread: 360,
             origin: { x: 0.5, y: 0.5 },
-            colors: ['#FBBF24', '#E05A47', '#F4A7B9', '#FFFFFF'],
-            startVelocity: 55,
-            gravity: 0.4,
-            scalar: 1.6,
-            shapes: ['star', 'heart'],
+            colors: ['#FF8F00', '#FDD835', '#C62828', '#9C27B0', '#FFFDF5'],
+            startVelocity: 60,
+            gravity: 0.35,
+            scalar: 1.8,
+            shapes: ['star'],
           })
         }, 150)
       }
@@ -38,14 +38,14 @@ export default function ConfettiTrigger({ trigger, rarityConfig }) {
       if (rarityConfig.label?.includes('稀有')) {
         setTimeout(() => {
           confetti({
-            particleCount: 100,
-            spread: 140,
+            particleCount: 120,
+            spread: 160,
             origin: { x: 0.5, y: 0.5 },
-            colors: ['#E05A47', '#F4A7B9', '#FBBF24'],
-            startVelocity: 32,
-            gravity: 0.65,
-            scalar: 1.1,
-            shapes: ['circle', 'heart'],
+            colors: ['#FF8F00', '#C62828', '#9C27B0'],
+            startVelocity: 36,
+            gravity: 0.6,
+            scalar: 1.2,
+            shapes: ['circle', 'star'],
           })
         }, 250)
       }
