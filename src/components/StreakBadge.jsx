@@ -1,17 +1,21 @@
-import { motion } from 'framer-motion'
+import { Flame } from 'lucide-react'
 
 export default function StreakBadge({ streak }) {
-  if (streak.count < 1) return null
+  const count = Math.max(0, streak || 0)
 
   return (
-    <motion.div
-      className="flex items-center gap-1.5 font-body text-xs tracking-wide"
-      style={{ color: 'var(--seal)' }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+    <div
+      className="flex items-center gap-1 font-body text-sm tracking-wider"
+      style={{ color: 'var(--color-dim)' }}
     >
-      <span style={{ fontSize: '1.1em' }}>🔥</span>
-      连续 {streak.count} 天
-    </motion.div>
+      <Flame
+        className="w-4 h-4"
+        style={{
+          color: count > 0 ? 'var(--color-accent)' : 'var(--color-dim)',
+          fill: count > 0 ? 'var(--color-accent)' : 'none',
+        }}
+      />
+      <span>连续 {count} 天</span>
+    </div>
   )
 }
